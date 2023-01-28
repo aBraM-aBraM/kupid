@@ -1,6 +1,8 @@
 # Kupid
 
-extension used to show your likes in okcupid
+extension used to show your likes in okcupid 
+
+This was done together with github.com/edenidan 
 
 # Installation
 
