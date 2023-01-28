@@ -1,0 +1,17 @@
+{
+    "name":"Kupid",
+    "version":"1.0",
+    "manifest_version":3,
+    
+    "content_scripts":[
+        {
+            "matches":["https://www.okcupid.com/who-likes-you"],
+            "js": ["content.js"]
+        }
+    ],
+    
+    "icons":{
+        "128":"resources/kupid.png"
+    }
+   
+}
