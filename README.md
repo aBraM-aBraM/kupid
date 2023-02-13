@@ -1,4 +1,4 @@
-# Kupid
+# Kupid (Patched February 13th)
 
 extension used to show your likes in okcupid 
 
