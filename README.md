@@ -1,26 +1,15 @@
 # Kupid
 
-# History
+The Ultimate OkCupid Framework
 
-For some reason this extension was patched in February 13th 2023.
-The patch made the images come blur instead of the previous way of
-providing plain images getting blurred by css.
+--- 
 
-This patch has been reverted. I guess they patch it
-in valentines in order to increase profits and maybe
-let the people who use these kind of extensions have it
-their way for the rest of the year. 
+## Extension
 
-extension used to show your likes in okcupid 
+Show OkCupid's likes.
 
-This was done together with github.com/edenidan 
+---
 
-# Installation
+## Evaluator
 
-## Chrome
-
-* navigate to chrome://extensions
-* enable developer mode (top right corner in English layout)
-* choose Load unpacked
-* choose the project's root folder
-* profit??
+This was done together with github.com/edenidan
