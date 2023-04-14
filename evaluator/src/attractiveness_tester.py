@@ -3,10 +3,10 @@ from typing import BinaryIO
 import requests
 import io
 import base64
-import click
+
 import PIL.Image
 import bs4
-from pathlib import Path
+
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/110.0'
@@ -34,20 +34,3 @@ def load(picture_file_object: BinaryIO) -> float:
         return float(rank_divs[0].text.split()[1])
     except IndexError:
         raise ValueError
-
-
-@click.group
-def main():
-    pass
-
-
-@main.command()
-@click.argument("picture_path")
-def picture(picture_path: str):
-    """Evaluates attractiveness of a given picture"""
-    with open(picture_path, 'rb') as picture_file_object:
-        print(load(picture_file_object))
-
-
-if __name__ == '__main__':
-    main()

@@ -1,3 +1,4 @@
 .idea/
 evaluator/dist/
 evaluator/*.egg-info/
+evaluator/src/*.egg-info/
