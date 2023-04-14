@@ -1,5 +1,5 @@
 [project]
-name = "evaluator_kupid"
+name = "kupid"
 version = "0.0.1"
 
 [build-system]
@@ -7,4 +7,4 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project.scripts]
-kupid_evaluator = "cli:main"
+kupid = "kupid.cli:main"

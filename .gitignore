@@ -1,4 +1,4 @@
 .idea/
-evaluator/dist/
-evaluator/*.egg-info/
-evaluator/src/*.egg-info/
+python3/dist/
+pykupid/src/*.egg-info/
+pykupid/dist/

@@ -10,11 +10,13 @@ Show OkCupid's likes.
 
 ---
 
-## Evaluator
+## PyKupid
+
+Backend framework
 
 Setup
 ```shell
-cd evaluator/
+cd python3/
 pip install -r requirements.txt
 python3 -m build
 pip install dist/evaluator_kupid-(version).(tar.gz/whl)
