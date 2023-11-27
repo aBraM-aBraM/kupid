@@ -12,6 +12,10 @@
     
     "icons":{
         "128":"resources/kupid.png"
+    },
+
+    "action": {
+        "default_popup": "popup.html"
     }
    
 }
