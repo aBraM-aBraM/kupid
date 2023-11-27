@@ -2,6 +2,13 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.action == "show_likes") {
         show_likes();
     }
+	if (request.action == "change_filter") {
+		change_filter(request.content);
+	}
+	else{
+		console.log("got other shit");
+		console.log(request.action);
+	}
 });
 
 
@@ -24,4 +31,35 @@ function show_likes() {
 
 	// remove mist
 	document.getElementsByClassName("sZGfP81jwTqSEbDw1X7K")[0].remove()
+}
+
+function change_filter(content) {
+	console.log(content);
+	
+	like_btn = document.getElementsByClassName("dt-action-buttons-button like")[0];
+	pass_btn = document.getElementsByClassName("dt-action-buttons-button pass")[0];
+
+	function sleep(milliseconds) {  
+		return new Promise(resolve => setTimeout(resolve, milliseconds));  
+	}  
+
+	async function filter_hook() {
+		await sleep(100)
+		details = document.getElementsByClassName("matchprofile-details-text");
+		looking_for = details[details.length - 1].textContent;
+		person_name = document.getElementsByClassName("card-content-header__text")[0].textContent;
+		
+		for (let key in content)
+		{
+			if (content.hasOwnProperty(key)){
+				if(!looking_for.includes(key))
+				{
+					console.log(person_name + " doesn't meet the requirements skipping");
+					pass_btn.click();
+				}
+			}
+		}
+	}
+	like_btn.onclick = filter_hook;
+	pass_btn.onclick = filter_hook;
 }

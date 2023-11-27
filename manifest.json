@@ -5,7 +5,7 @@
     
     "content_scripts":[
         {
-            "matches":["https://www.okcupid.com/who-likes-you"],
+            "matches":["https://www.okcupid.com/who-likes-you", "https://www.okcupid.com/discover"],
             "js": ["content.js"]
         }
     ],
