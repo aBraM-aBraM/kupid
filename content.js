@@ -1,9 +1,17 @@
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    if (request.action == "show_likes") {
-        show_likes();
-    }
+	console.log("received " + request);
+	switch (request.action)
+	{
+		case "show_likes":
+			show_likes();
+			break;
+		case "get_pathname":
+			sendResponse(window.location.pathname);
+			break;
+		default:
+			sendResponse("unknown action!");
+	};
 });
-
 
 function show_likes() {
 	console.log("button clicked");
