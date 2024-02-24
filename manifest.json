@@ -1,5 +1,5 @@
 {
-    "name": "Kupid",
+    "name": "cupid-cheat",
     "version": "1.0",
     "manifest_version": 3,
     
@@ -15,7 +15,7 @@
     ],
     
     "icons": {
-        "128": "resources/kupid.png"
+        "128": "resources/cupid-cheat.png"
     },
 
     "action": {

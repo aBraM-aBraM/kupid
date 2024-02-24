@@ -11,6 +11,12 @@ function msg_to_content(message, callback) {
     });
 }
 
+const FILTER_ID_TO_LOOKING_FOR = {
+    "new_filter" : "New",
+    "long_filter": "Long",
+    "short_filter": "Short",
+    "hookups_filter": "Hookups"
+};
 
 function init_show_likes() {
     var showLikesButton = document.getElementById('show_likes');
@@ -23,48 +29,66 @@ function init_show_likes() {
     }
 }
 
-function init_filter(){
-    var id_to_looking_for = {
-        "new_filter" : "New",
-        "long_filter": "Long",
-        "short_filter": "Short",
-        "hookups_filter": "Hookups"
-    };
 
-    Object.keys(id_to_looking_for).forEach(function (checkboxId) {
+
+function set_content_onclick_onready() {
+    console.log("cunt im fucking tryin");
+    msg_to_content({action: "content_ready"}, function(response) {
+        if (typeof response !== 'undefined') {
+            handleCheckboxChange();
+            console.log("filter changed response: " + response) 
+        }
+        else {
+            setTimeout(set_content_onclick_onready, 300);
+        }
+    });
+}
+
+function load_local_filter() {
+    chrome.storage.local.get(["change_filter"]).then((result) => {
+        if (typeof result !== 'undefined') {
+
+            console.log("setting switch checked state");
+            Object.keys(FILTER_ID_TO_LOOKING_FOR).forEach(function (checkboxId) {
+                var checkbox = document.getElementById(checkboxId);
+                checkbox.checked = result.change_filter.params[FILTER_ID_TO_LOOKING_FOR[checkboxId].toLowerCase()];
+            });
+
+            console.log("sending set_content_onclick_onready");
+            set_content_onclick_onready();
+        }
+    });
+}
+
+
+function handleCheckboxChange() {
+    console.log("handleCheckboxChange");
+    current_filter = {};
+
+    Object.keys(FILTER_ID_TO_LOOKING_FOR).forEach(function (checkboxId) {
+        current_filter[FILTER_ID_TO_LOOKING_FOR[checkboxId].toLowerCase()] =  document.getElementById(checkboxId).checked;
+    });
+
+    var change_filter_data = {action: "change_filter", params: current_filter};
+    chrome.storage.local.set({change_filter: change_filter_data}).then(() => {
+        console.log("set session values");
+    });
+
+    msg_to_content(change_filter_data, function(response) {
+        console.log("filter changed response: " + response)
+    });
+}
+
+function init_filter(){
+
+    console.log("setting switch listeners");
+    Object.keys(FILTER_ID_TO_LOOKING_FOR).forEach(function (checkboxId) {
         var checkbox = document.getElementById(checkboxId);
         checkbox.addEventListener('change', handleCheckboxChange);
     });
 
-    function handleCheckboxChange() {
-        current_filter = {};
-
-        Object.keys(id_to_looking_for).forEach(function (checkboxId) {
-            current_filter[id_to_looking_for[checkboxId].toLowerCase()] =  document.getElementById(checkboxId).checked;
-        });
-
-        var change_filter_data = {action: "change_filter", params: current_filter};
-        chrome.storage.local.set({change_filter: change_filter_data}).then(() => {
-            console.log("set session values");
-        });
-
-        msg_to_content(change_filter_data, function(response) {
-            console.log("filter changed response: " + response)
-        });
-    }
-
-
-    // setup current session 
-    chrome.storage.local.get(["change_filter"]).then((result) => {
-        console.log("value is " + JSON.stringify(result));
-
-        Object.keys(id_to_looking_for).forEach(function (checkboxId) {
-            var checkbox = document.getElementById(checkboxId);
-            console.log("params = " + JSON.stringify(result.change_filter.params));
-            checkbox.checked = result.change_filter.params[id_to_looking_for[checkboxId].toLowerCase()];
-        });
-
-    });
+    console.log("loading local filter");
+    load_local_filter();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
