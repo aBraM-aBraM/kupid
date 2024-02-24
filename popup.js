@@ -54,8 +54,8 @@ function load_local_filter() {
                 checkbox.checked = result.change_filter.params[FILTER_ID_TO_LOOKING_FOR[checkboxId].toLowerCase()];
             });
 
-            // console.log("sending set_content_onclick_onready");
-            // set_content_onclick_onready();
+            console.log("sending set_content_onclick_onready");
+            set_content_onclick_onready();
         }
     });
 }

@@ -55,7 +55,7 @@ function change_filter(content) {
 	pass_btn.onclick = filter_hook;
 }
 
-console.log("oi cunt");
+
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 	
 	var msg_response = "default";
