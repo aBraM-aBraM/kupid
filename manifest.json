@@ -1,11 +1,11 @@
 {
-    "name": "Kupid",
+    "name": "cupid-cheat",
     "version": "1.0",
     "manifest_version": 3,
     
     "content_scripts": [
         {
-            "matches": ["https://www.okcupid.com/who-likes-you", "https://www.okcupid.com/discover"],
+            "matches": ["https://www.okcupid.com/*"],
             "js": ["content.js"]
         }
     ],
@@ -15,7 +15,7 @@
     ],
     
     "icons": {
-        "128": "resources/kupid.png"
+        "128": "resources/cupid-cheat.png"
     },
 
     "action": {

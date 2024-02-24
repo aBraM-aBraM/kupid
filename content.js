@@ -55,9 +55,12 @@ function change_filter(content) {
 	pass_btn.onclick = filter_hook;
 }
 
+console.log("oi cunt");
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 	
 	var msg_response = "default";
+
+	console.log("content.js receive request: " + message.action);
 
 	switch(message.action) {
 		case "can_show_likes":
@@ -70,8 +73,12 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 			msg_response = "change_filter";
 			change_filter(message.params);
 			break;
+		case "content_ready":
+			msg_response = true;
 		default:
 			msg_response = "unknown command";
 	}
+
+	console.log("content.js response: " + {response: msg_response});
     sendResponse({ response: msg_response });
 });
