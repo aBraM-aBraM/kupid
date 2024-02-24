@@ -1,32 +1,54 @@
-<html>
-    <head>
-        <title>Kupid</title>
-        <script src="content.js"></script>
-        <script src="popup.js"></script>
-    </head>
-    <body>
-        <img src="./resources/kupid.png">
-        
-        <div>
-            <li>
-                <input type="checkbox" id="New" checked> New friends
-            </li>
-
-            <li>
-                <input type="checkbox" id="Long" checked> Long-term dating
-            </li>
-
-            <li>
-                <input type="checkbox" id="Short" checked> Short-term dating
-            </li>
-
-            <li>
-                <input type="checkbox" id="Hookups" checked> Hookups
-            </li>
-        </div>
-
-        <div>
-            <button id="show_likes">Show Likes</button>
-        </div>
-    </body>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Kupid</title>
+    <link rel="stylesheet" href="css/bulma.min.css">
+    <link rel="stylesheet" href="css/bulma-switch.min.css">
+    <script src="popup.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title has-text-centered is-size-2">Cupid-Cheat</h1>
+            <div class="field">
+                <label class="switch is-rounded is-size-4 p-1">
+                    <input type="checkbox" value="false" id="new_filter" checked>
+                    <span class="check is-info"></span>
+                    <span class="control-label">New friends</span>
+                </label>
+            </div>
+            <div class="field">
+                <label class="switch is-rounded is-size-4 p-1">
+                    <input type="checkbox" value="false" id="long_filter" checked>
+                    <span class="check is-info"></span>
+                    <span class="control-label">Long-term dating</span>
+                </label>
+            </div>
+            <div class="field">
+                <label class="switch is-rounded is-size-4 p-1">
+                    <input type="checkbox" value="false" id="short_filter" checked>
+                    <span class="check is-info"></span>
+                    <span class="control-label">Short-term dating</span>
+                </label>
+            </div>
+            <div class="field">
+                <label class="switch is-rounded is-size-4 p-1">
+                    <input type="checkbox" value="false" id="hookups_filter" checked>
+                    <span class="check is-info"></span>
+                    <span class="control-label">Hookups</span>
+                </label>
+            </div>
+            <div class="has-text-centered p-1">
+                <div class="buttons">
+                    <button class="button is-success is-rounded is-size-4">Filter</button>
+                </div>
+            </div>
+            <div class="has-text-centered p-1">
+                <div class="buttons">
+                    <button class="button is-danger is-rounded is-size-4">Show Likes</button>
+                </div>
+            </div>
+    </div>
+</body>
 </html>

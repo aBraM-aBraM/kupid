@@ -1,16 +1,7 @@
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    if (request.action == "show_likes") {
-        show_likes();
-    }
-	if (request.action == "change_filter") {
-		change_filter(request.content);
-	}
-	else{
-		console.log("got other shit");
-		console.log(request.action);
-	}
-});
 
+function can_show_likes() {
+	return document.getElementsByClassName("usercard-placeholder-thumb").length > 0;
+}
 
 function show_likes() {
 	console.log("button clicked");
@@ -34,8 +25,7 @@ function show_likes() {
 }
 
 function change_filter(content) {
-	console.log(content);
-	
+
 	like_btn = document.getElementsByClassName("dt-action-buttons-button like")[0];
 	pass_btn = document.getElementsByClassName("dt-action-buttons-button pass")[0];
 
@@ -46,20 +36,42 @@ function change_filter(content) {
 	async function filter_hook() {
 		await sleep(100)
 		details = document.getElementsByClassName("matchprofile-details-text");
-		looking_for = details[details.length - 1].textContent;
+		looking_for = details[details.length - 1].textContent.toLowerCase();
 		person_name = document.getElementsByClassName("card-content-header__text")[0].textContent;
-		
+
 		for (let key in content)
 		{
 			if (content.hasOwnProperty(key)){
 				if(!looking_for.includes(key))
 				{
-					console.log(person_name + " doesn't meet the requirements skipping");
+					console.log(person_name + " doesn't meet the filter skipping");
 					pass_btn.click();
 				}
 			}
 		}
 	}
+
 	like_btn.onclick = filter_hook;
 	pass_btn.onclick = filter_hook;
 }
+
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+	
+	var msg_response = "default";
+
+	switch(message.action) {
+		case "can_show_likes":
+			msg_response = "can_show_likes";
+			break;
+		case "show_likes":
+			msg_response = "show_likes";
+			break;
+		case "change_filter":
+			msg_response = "change_filter";
+			change_filter(message.params);
+			break;
+		default:
+			msg_response = "unknown command";
+	}
+    sendResponse({ response: msg_response });
+});
