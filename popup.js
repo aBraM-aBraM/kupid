@@ -32,7 +32,6 @@ function init_show_likes() {
 
 
 function set_content_onclick_onready() {
-    console.log("cunt im fucking tryin");
     msg_to_content({action: "content_ready"}, function(response) {
         if (typeof response !== 'undefined') {
             handleCheckboxChange();
