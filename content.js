@@ -63,11 +63,9 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 	console.log("content.js receive request: " + message.action);
 
 	switch(message.action) {
-		case "can_show_likes":
-			msg_response = "can_show_likes";
-			break;
 		case "show_likes":
 			msg_response = "show_likes";
+			show_likes();
 			break;
 		case "change_filter":
 			msg_response = "change_filter";

@@ -20,13 +20,9 @@ const FILTER_ID_TO_LOOKING_FOR = {
 
 function init_show_likes() {
     var showLikesButton = document.getElementById('show_likes');
-    if (sendMessage("can_show_likes", [])) {
-        showLikesButton.hidden = true;
-    } else {
-        showLikesButton.addEventListener('click', function () {
-            sendMessage("show_likes", []);
-        });    
-    }
+    showLikesButton.addEventListener('click', function () {
+        sendMessage("show_likes", []);
+    });    
 }
 
 
@@ -85,6 +81,7 @@ function init_filter(){
         var checkbox = document.getElementById(checkboxId);
         checkbox.addEventListener('change', handleCheckboxChange);
     });
+    init_show_likes();
 
     console.log("loading local filter");
     load_local_filter();
